@@ -1,14 +1,10 @@
 <%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <% if post.errors.any? %>
+    <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved</h2>
+    <% post.errors.each do |error| %>
+      <p><%= error.full_message %></p>
+    <% end %>
   <% end %>
 
   <div>
@@ -22,6 +18,6 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-sm btn-success" %>
   </div>
 <% end %>
