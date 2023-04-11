@@ -1,14 +1,37 @@
 <p style="color: green"><%= notice %></p>
 
-<h1 class="text-center">
+<h1 class="text-center mb-5">
   Posts
 </h1>
 
-<% @posts.each do |post| %>
-  <%= render post %>
-  <p>
-    <%= link_to "Show post", post, class: "float-end" %>
-  </p>
-<% end %>
+<div id="posts">
+  <table data-controller="search" class="table table-hover table-bordered table-dark">
+    <thead>
+      <tr>
+        <th class="p-5">Title</th>
+        <th class="p-5">Content</th>
+        <th>
+          <input
+            type="text"
+            id="search"
+            placeholder="Search..."
+            class="form-control my-5"
+            data-action="input->search#filterPosts"
+          >
+        </th>
+      </tr>
+    </thead>
 
-<%= link_to "New post", new_post_path, class: "float-end" %>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td data-search-target="title" class="p-5"><h6><%= post.title %></h6></td>
+          <td data-search-target="content" class="p-5"><small><%= post.content %></small></td>
+          <td class="p-5"></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New post", new_post_path, class: "float-end" %><br>
